@@ -33,7 +33,7 @@ class Entry(Base):
 
     async def create(self):
         db_session = await session()
-        self.create_at = datetime.datetime.now(moscow_tz)
+        self.create_at = datetime.datetime.now(moscow_tz).replace(tzinfo=moscow_tz)
         db_session.add(self)
         await db_session.commit()
         await db_session.close()
@@ -63,7 +63,7 @@ class Entry(Base):
             entry = await db_session.get(Entry, self.id)
             if entry:
                 entry.completed = True
-                entry.completed_at = datetime.datetime.now(tz=moscow_tz)
+                entry.completed_at = datetime.datetime.now(tz=moscow_tz).replace(tzinfo=moscow_tz)
                 await db_session.commit()
         finally:
             await db_session.close()
