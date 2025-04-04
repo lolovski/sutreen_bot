@@ -1,4 +1,5 @@
 pytz
+aiogram_inline_paginations
 python-dotenv==1.0.1
 SQLAlchemy==2.0.31
 asyncpg==0.29.0
