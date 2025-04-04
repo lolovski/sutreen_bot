@@ -11,8 +11,8 @@ class EntryComponent(Base):
     component_id = Column(Integer, ForeignKey('component.id'), primary_key=True)
 
     def __init__(self, entry_id, component_id):
-        self.entry_id = entry_id
-        self.component_id = component_id
+        self.entry_id = int(entry_id)
+        self.component_id = int(component_id)
 
     async def create(self):
         db_session = await session()

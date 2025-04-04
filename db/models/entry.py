@@ -26,8 +26,8 @@ class Entry(Base):
     components: Mapped[List['Component']] = relationship(back_populates='entries', lazy="selectin", secondary='entry_component')
 
     def __init__(self, id=None, client_id=None, description=None, contact=None, **kwargs):
-        self.id = id
-        self.client_id = client_id
+        self.id = int(id) if id else id
+        self.client_id = int(client_id) if client_id else client_id
         self.description = description
         self.contact = contact
 

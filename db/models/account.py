@@ -16,7 +16,7 @@ class Account(Base):
 
     def __init__(self, telegram_id=None, telephone=None, first_name=None):
         self.first_name = first_name
-        self.telegram_id = telegram_id
+        self.telegram_id = int(telegram_id) if telegram_id else telegram_id
         self.telephone = telephone
 
     async def create(self):

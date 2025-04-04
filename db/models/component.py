@@ -17,8 +17,8 @@ class Component(Base):
     entries: Mapped[List["Entry"]] = relationship(back_populates="components", lazy="selectin", secondary='entry_component')
 
     def __init__(self, id=None, name=None, group=None, price=None):
-        self.id = id
-        self.price = price
+        self.id = int(id) if id else id
+        self.price = int(price) if price else price
         self.name = name
         self.group = group
 
