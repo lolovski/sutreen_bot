@@ -1,0 +1,14 @@
+
+python-dotenv==1.0.1
+SQLAlchemy==2.0.31
+asyncpg==0.29.0
+alembic==1.13.2
+requests==2.32.3
+requests-cache==1.2.1
+beautifulsoup4==4.13.0b2
+lxml==5.2.2
+aiosqlite
+fastapi~=0.115.6
+pydantic~=2.8.2
+pydantic-settings~=2.7.0
+aiogram~=3.19.0
