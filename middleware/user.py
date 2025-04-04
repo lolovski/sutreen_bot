@@ -22,7 +22,7 @@ class UserMiddleware(BaseMiddleware):
     ) -> Any:
 
         current_event = event.message or event.callback_query
-        telegram_id = current_event.from_user.id
+        telegram_id = str(current_event.from_user.id)
         first_name = re.sub(r'[^a-zA-Z0-9а-яА-ЯёЁ\s]', '', current_event.from_user.full_name) or None
         data['first_name'] = first_name
         data['telegram_id'] = telegram_id
