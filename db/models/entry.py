@@ -33,6 +33,7 @@ class Entry(Base):
 
     async def create(self):
         db_session = await session()
+        self.create_at = datetime.datetime.now(moscow_tz)
         db_session.add(self)
         await db_session.commit()
         await db_session.close()
