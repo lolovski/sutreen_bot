@@ -2,6 +2,7 @@ import datetime
 from typing import List
 
 from sqlalchemy import Column, Integer, String, ForeignKey, Date, DateTime, Boolean
+from sqlalchemy.types import TIMESTAMP
 from sqlalchemy.orm import relationship, mapped_column, Mapped
 from sqlalchemy.future import select
 from db import Base, session
@@ -15,8 +16,8 @@ class Entry(Base):
     __tablename__ = "entry"
     id = Column(Integer, primary_key=True, autoincrement=True)
     client_id = mapped_column(ForeignKey('account.telegram_id', ondelete='CASCADE', onupdate="CASCADE"))
-    create_at = Column(DateTime, default=datetime.datetime.now(moscow_tz))
-    completed_at = Column(DateTime, nullable=True)
+    create_at = Column(TIMESTAMP(timezone=True), default=datetime.datetime.now(moscow_tz))
+    completed_at = Column(TIMESTAMP(timezone=True), nullable=True)
     completed = Column(Boolean, default=False)
     description = Column(String)
     contact = Column(String)
