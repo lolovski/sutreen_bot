@@ -118,15 +118,20 @@ async def select_price_handler(message: Message, state: FSMContext, telegram_id:
     await message.answer(text=select_price_text)
 
 
+
 @admin_router.message(ComponentForm.name)
 async def create_component_handler(message: Message, state: FSMContext, telegram_id: int):
     price = message.text
-    data = await state.get_data()
-    component = await Component(name=data['name'], price=price, group=data['group']).create()
-    component_scheme = ComponentScheme()
-    await message.answer(text=create_text(component), reply_markup=SelectGroupKeyboard(component_scheme.groups))
-    await state.clear()
+    try:
+        price = int(price)
+        data = await state.get_data()
+        component = await Component(name=data['name'], price=price, group=data['group']).create()
+        component_scheme = ComponentScheme()
+        await message.answer(text=create_text(component), reply_markup=SelectGroupKeyboard(component_scheme.groups))
+        await state.clear()
 
+    except:
+        await message.answer(text=int_error_phrase)
 
 @admin_router.message(F.text == 'Заказы в очереди')
 async def main_entries_handler(message: Message, state: FSMContext, telegram_id: int):
