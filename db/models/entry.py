@@ -27,7 +27,7 @@ class Entry(Base):
 
     def __init__(self, id=None, client_id=None, description=None, contact=None, **kwargs):
         self.id = int(id) if id else id
-        self.client_id = int(client_id) if client_id else client_id
+        self.client_id = client_id
         self.description = description
         self.contact = contact
 
